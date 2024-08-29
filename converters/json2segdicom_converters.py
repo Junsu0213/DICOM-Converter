@@ -1,4 +1,4 @@
-# -8*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 """
 Created on Mon. Aug. 05 10:32:11 2024
 @author: JUN-SU Park

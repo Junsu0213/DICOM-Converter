@@ -8,7 +8,7 @@ import os
 import logging
 
 
-def convert_nii_to_png(input_file, output_dir=None):
+def convert_nii_to_png_folder(input_file, output_dir=None):
     # If output_dir is not provided, create a new directory
     if output_dir is None:
         # Get the directory of the input file
@@ -27,3 +27,8 @@ def convert_nii_to_png(input_file, output_dir=None):
         logging.info(f"Converted {output_dir} to PNG")
     except Exception as e:
         logging.error(f"Error converting {input_file}: {str(e)}")
+
+
+if __name__ == '__main__':
+    input_file = r'D:\DATASET\DICOM_Converter_test\sub01\nii\dcm.nii.gz'
+    convert_nii_to_png_folder(input_file)
