@@ -28,6 +28,7 @@ def convert_png_to_dicom(png_file, dcm_ref_file, output_file):
         # Convert PNG values to DICOM range (0-255 -> -2000-2000)
         mask_data = mask_data / 50
         mask_data = mask_data.astype(np.int16)
+
     else:
         mask_data = np.full((dcm_ref.Rows, dcm_ref.Columns), 0, dtype=np.int16)
 
