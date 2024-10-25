@@ -18,8 +18,8 @@ def create_metainfo_json(output_file, labels):
     """
     # Fixed RGB values for the first 10 labels
     fixed_rgb_values = [
-        [0, 255, 0],  # Green
         [255, 0, 0],  # Red
+        [0, 255, 0],  # Green
         [0, 0, 255],  # Blue
         [255, 255, 0],  # Yellow
         [255, 0, 255],  # Magenta

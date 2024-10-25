@@ -89,4 +89,4 @@ def create_seg_dicom(dicom_dir, output_dir=None, labels=None):
 
     # Save the DICOM-SEG file
     dcm.save_as(output_file)
-    print(f"DICOM-SEG file saved: {output_file}")
+    # print(f"DICOM-SEG file saved: {output_file}")
