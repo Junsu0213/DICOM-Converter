@@ -5,15 +5,16 @@ from upload.orthanc_data_upload_ssl import OrthancUploader
 
 
 if __name__ == "__main__":
-    input_dir = r'C:\Users\BMC\Desktop\COV-CCO TEST\COV-CCO-test_ver.3'
-    cco_segdcm_convert_process_all(input_dir)
-    cco_metainfo_convert_process_all(input_dir)
+    # Local folder path containing DICOM files
+    input_dir = r'C:\Users\BMC\Desktop\COV-CCO'
+    # cco_segdcm_convert_process_all(input_dir)
+    # cco_metainfo_convert_process_all(input_dir)
 
     # Server configuration
     server_config = {
-        'url': 'http://192.168.44.190:8042',  # 실제 서버 IP나 도메인으로 변경
-        'username': 'wlsdud022',  # Orthanc 사용자 이름
-        'password': 'wlsdud022',  # Orthanc 비밀번호
+        'url': 'http://192.168.44.190:8042',  # Replace with actual server IP or domain
+        'username': 'wlsdud022',  # Username
+        'password': 'wlsdud022',  # Password
         'verify_ssl': False,
         'timeout': 30
     }
@@ -22,5 +23,6 @@ if __name__ == "__main__":
     print(f"Target Server: {server_config['url']}")
     print(f"Source Folder: {input_dir}")
 
+    # Initialize and run uploader
     uploader = OrthancUploader(server_config)
     uploader.upload_folder(input_dir)

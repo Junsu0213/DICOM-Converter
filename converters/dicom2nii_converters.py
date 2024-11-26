@@ -23,5 +23,5 @@ def convert_dicom_to_nii(input_dir, output_dir=None):
 
 
 if __name__ == '__main__':
-    input_dir = r'D:\DATASET\DICOM_Converter_test\sub01\dcm'
+    input_dir = r'C:\Users\BMC\Desktop\Dataset\TEST DATASET\Lung_CT_ITK\COV-CCO\COV-CCO-040\20210206\dcm'
     convert_dicom_to_nii(input_dir)

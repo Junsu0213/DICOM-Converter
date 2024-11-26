@@ -36,7 +36,7 @@ def create_seg_dicom(dicom_dir, output_dir=None, labels=None):
         template=template,
         inplane_cropping=False,
         skip_empty_slices=False,
-        skip_missing_segment=True,
+        skip_missing_segment=False,
     )
 
     # Get list of DICOM files

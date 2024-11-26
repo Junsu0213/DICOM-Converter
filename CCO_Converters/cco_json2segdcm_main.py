@@ -41,5 +41,5 @@ def cco_segdcm_convert_process_all(input_dir: str) -> None:
 
 
 if __name__ == '__main__':
-    input_dir = r'C:\Users\BMC\Desktop\COV-CCO-test'
+    input_dir = r'C:\Users\BMC\Desktop\Dataset\TEST DATASET\Lung_CT_ITK\COV-CCO'
     cco_segdcm_convert_process_all(input_dir)
