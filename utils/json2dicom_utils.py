@@ -51,6 +51,7 @@ def convert_json_to_dicom(json_file, dcm_ref_file, output_file):
     dcm_seg.PixelData = mask_data.tobytes()
     dcm_seg.SamplesPerPixel = 1  # Grayscale: 1, RGB: 3
     dcm_seg.PhotometricInterpretation = 'MONOCHROME2'  # Grayscale: 'MONOCHROME2', RGB: 'RGB'
+    dcm_seg.file_meta.TransferSyntaxUID = '1.2.840.10008.1.2.1'
 
     # Save the modified DICOM file
     dcm_seg.save_as(output_file)

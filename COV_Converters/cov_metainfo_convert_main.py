@@ -19,13 +19,13 @@ from converters.dicom_metainfo_converters import (
 warnings.filterwarnings('ignore', category=UserWarning, module='pydicom')
 
 
-def cco_metainfo_convert_process_all(input_dir: str) -> None:
+def cov_metainfo_convert_process_all(base_dir: str) -> None:
     """
     Process all patient directories and update DICOM metadata.
     Shows progress with tqdm progress bar.
 
     Args:
-        input_dir: Base directory containing patient folders
+        base_dir: Base directory containing patient folders
 
     Directory structure expected:
     input_dir/
@@ -38,31 +38,32 @@ def cco_metainfo_convert_process_all(input_dir: str) -> None:
     │   │       └── DICOM files
     """
     # Get list of all patients
-    patients = os.listdir(input_dir)
+    patient_dirs = [os.path.join(base_dir, f) for f in os.listdir(base_dir)]
 
     # Create progress bar
-    for patient_id in tqdm(patients, desc="Updating DICOM MetaInfo", unit="patient"):
-        patient_path = os.path.join(input_dir, patient_id)
+    for patient_dir in tqdm(patient_dirs, desc="Updating DICOM MetaInfo", unit="patient"):
 
         # Process each date directory for the patient
-        date_dirs = os.listdir(patient_path)
-        for date_dir in date_dirs:
-            date_path = os.path.join(patient_path, date_dir)
+        ord_dirs = [os.path.join(patient_dir, f) for f in os.listdir(patient_dir)]
+
+        for ord_dir in ord_dirs:
+            date_ = os.listdir(ord_dir)[0]
+            target_path = os.path.join(ord_dir, date_, 'TargetSequence')
 
             # Define paths for JSON annotations and DICOM files
-            json_dir = os.path.join(date_path, 'annotation', 'original')
-            dcm_dir = os.path.join(date_path, 'dcm')
+            json_dir = os.path.join(target_path, 'annotation', 'original')
+            dcm_dir = os.path.join(target_path, 'dcm')
 
             try:
                 # Extract information and update DICOM metadata
                 label, sex = extract_label_form_json(json_dir)
                 convert_dicom_metainfo(dcm_dir, label, sex)
             except Exception as e:
-                print(f"\nError processing {patient_id} - {date_dir}: {str(e)}")
+                print(f"\nError processing {patient_dir.split('\\')[-1]} - {date_}: {str(e)}")
                 continue
 
 
 if __name__ == '__main__':
     # Example usage
-    input_dir = r'C:\Users\BMC\Desktop\COV-CCO-test'
-    cco_metainfo_convert_process_all(input_dir)
+    input_dir = r'C:\Users\BMC\Desktop\Dataset\TEST DATASET\Healthcare_CT\dataset\CT'
+    cov_metainfo_convert_process_all(input_dir)
